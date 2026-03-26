@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adriel.product_api.model.Product;
+import com.adriel.product_api.dto.ProductRequestDTO;
+import com.adriel.product_api.dto.ProductResponseDTO;
 import com.adriel.product_api.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,17 +24,17 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> newProduct(@RequestBody Product product) {
-        return ResponseEntity.ok(productService.create(product));
+    public ResponseEntity<ProductResponseDTO> newProduct(@RequestBody ProductRequestDTO productDTO) {
+        return ResponseEntity.ok(productService.create(productDTO));
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<ProductResponseDTO>> getProducts() {
         return ResponseEntity.ok(productService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> findById(@PathVariable Long id) {
+    public ResponseEntity<ProductResponseDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.findById(id));
     }
 }
