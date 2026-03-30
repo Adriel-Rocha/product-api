@@ -8,9 +8,11 @@ import lombok.Data;
 @Data
 @Builder
 public class ProductResponseDTO {
+    
     private Long id;
+    private String productIdentifier;
     private String name;
     private String description;
     private BigDecimal price;
-    private String productIdentifier;
+    private CategoryDTO category;
 }
